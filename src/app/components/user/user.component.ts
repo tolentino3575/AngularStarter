@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
   address:Address;
   hobbies:string[]; // array of strings, can set type to 'any' to be boolean, string, number, etc
   posts:Post[];
+  isEdit:boolean = false;
 
   constructor(private dataService:DataService) { // need to inject services as a dependency in the constructor parameter
     console.log('constructor ran...');           // can set it to anything (dataService) but need to set as :DataService
@@ -32,8 +33,8 @@ export class UserComponent implements OnInit {
     this.hobbies = ['Code', 'Movies', 'Music']; // need to be strings following declared object
 
     this.dataService.getPosts().subscribe((posts) => {
-      console.log(posts);
-      this.posts = posts;
+      console.log(posts);     // this.dataService: what we brought in when we injected the service to the constructor
+      this.posts = posts;     // getPosts() returns observable so we need to .subscribe to it and it gives us posts
     });
   }
 
@@ -55,17 +56,21 @@ export class UserComponent implements OnInit {
       }
     }
   }
+
+  toggleEdit(){
+    this.isEdit = !this.isEdit; // if true it will set to false, if false sets to true
+  }
 }
 
 interface Address{        // can put this inside of another file (ie models folder)
-  street: string,          // import it into this file or other files that you want to use it in
+  street: string,         // import it into this file or other files that you want to use it in
   city: string,
-  state: string,
+  state: string
 }
 
 interface Post{
-  id: number,
-  title: string,
-  body: string,
-  userId: number
+    id: number,
+    title: string,
+    body: string,
+    userId: number
 }

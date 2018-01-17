@@ -9,37 +9,41 @@
 <!-- events are done in parenthesis with the type of event inside set to a function -->
 <!-- function is written in component -->
 
-<h1>Edit User</h1>
-<form>
-  <div>
-    <label for="name">Name: </label><br>
-    <input type="text" [(ngModel)]="name" name="name">
-    <!-- [()] indicates 2 way data binding-->
-    <!-- [(ngModel)] is bound to our name property-->
-    <!-- need to have a name attritube, in this case = to name-->
-  </div>
-  <div>
-    <label for="age">Age: </label><br>
-    <input type="number" [(ngModel)]="age" name="age">
-  </div>
-  <div>
-    <label for="email">Email: </label><br>
-    <input type="text" [(ngModel)]="email" name="email">
-  </div>
-  <div>
-    <label for="street">Street: </label><br>
-    <input type="text" [(ngModel)]="address.street" name="street">
-    <!-- this is the address object so need address.property, name attribute is just property -->
-  </div>
-  <div>
-    <label for="city">City: </label><br>
-    <input type="text" [(ngModel)]="address.city" name="city">
-  </div>
-  <div>
-    <label for="state">State: </label><br>
-    <input type="text" [(ngModel)]="address.state" name="state">
-  </div>
-</form>
+<button (click)="toggleEdit()">Edit User</button>
+
+<div *ngIf=isEdit>
+  <h1>Edit User</h1>
+  <form>
+    <div>
+      <label for="name">Name: </label><br>
+      <input type="text" [(ngModel)]="name" name="name">
+      <!-- [()] indicates 2 way data binding-->
+      <!-- [(ngModel)] is bound to our name property-->
+      <!-- need to have a name attritube, in this case = to name-->
+    </div>
+    <div>
+      <label for="age">Age: </label><br>
+      <input type="number" [(ngModel)]="age" name="age">
+    </div>
+    <div>
+      <label for="email">Email: </label><br>
+      <input type="text" [(ngModel)]="email" name="email">
+    </div>
+    <div>
+      <label for="street">Street: </label><br>
+      <input type="text" [(ngModel)]="address.street" name="street">
+      <!-- this is the address object so need address.property, name attribute is just property -->
+    </div>
+    <div>
+      <label for="city">City: </label><br>
+      <input type="text" [(ngModel)]="address.city" name="city">
+    </div>
+    <div>
+      <label for="state">State: </label><br>
+      <input type="text" [(ngModel)]="address.state" name="state">
+    </div>
+  </form>
+</div>
 
 <h1>Hobbies</h1>
 <form (submit)="addHobby(hobby.value)">
@@ -69,7 +73,7 @@
 
 <h1>Posts</h1>
 <div *ngFor="let post of posts">
-  <h4>{{post.title}}</h4>
+  <h3>{{post.title}}</h3>
   <p>{{post.body}}</p>
 </div>
 
