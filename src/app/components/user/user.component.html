@@ -5,7 +5,24 @@
   <li>{{address.street}} {{address.city}}, {{address.state}}</li>
 </ul>
 
+<button (click)="onClick()">Click me!</button>
+<!--
+  events are done in parenthesis with the type of event inside set to a function
+  function is written in component
+-->
+
 <h1>Hobbies</h1>
+<form (submit)="addHobby(hobby.value)">
+  <div>
+    <label for="hobby">Hobby:</label>
+    <input type="text" #hobby>
+  </div>
+</form>
+  <!--
+    event () is a submit event set to function addHobby()
+    to take value from input, need to give id #hobby
+    addHobby(hobby.value) hobby.value coming from input
+  -->
 <ul>
   <li *ngFor="let hobby of hobbies; let i = index">{{i + 1}}: {{hobby}}</li>
   <!-- 

@@ -28,6 +28,16 @@ export class UserComponent implements OnInit {
     }
     this.hobbies = ['Code', 'Movies', 'Music']; // need to be strings following declared object
   }
+
+  onClick(){
+    this.name='You clicked the button!!';
+    this.hobbies.push('New Hobby');
+  }
+
+  addHobby(hobby){
+    this.hobbies.unshift(hobby);
+    return false;
+  }
 }
 
 interface Address{        // can put this inside of another file (ie models folder)
