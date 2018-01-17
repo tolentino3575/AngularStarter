@@ -14,4 +14,4 @@ export class DataService {
       .map(res => res.json());                                         // http could have been called anything
   }   // get request returns an observable so we need to use .map from rxjs                            
       // take response (res) and map to json (res.json), return all posts from url as json
-}
+}     // getPosts() is an observer
