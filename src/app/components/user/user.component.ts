@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-user',
@@ -11,10 +12,11 @@ export class UserComponent implements OnInit {
   email:string;
   address:Address;
   hobbies:string[]; // array of strings, can set type to 'any' to be boolean, string, number, etc
+  posts:Post[];
 
-  constructor() { 
-    console.log('constructor ran...');
-  }
+  constructor(private dataService:DataService) { // need to inject services as a dependency in the constructor parameter
+    console.log('constructor ran...');           // can set it to anything (dataService) but need to set as :DataService
+  }                                              // can now call any function out of the service
 
   ngOnInit() {
     console.log('ngOnInit ran...');
@@ -28,6 +30,11 @@ export class UserComponent implements OnInit {
       state: 'CA'              // ie number instead of string or zip instead of state
     }
     this.hobbies = ['Code', 'Movies', 'Music']; // need to be strings following declared object
+
+    this.dataService.getPosts().subscribe((posts) => {
+      console.log(posts);
+      this.posts = posts;
+    });
   }
 
   onClick(){
@@ -51,7 +58,14 @@ export class UserComponent implements OnInit {
 }
 
 interface Address{        // can put this inside of another file (ie models folder)
-  street:string;          // import it into this file or other files that you want to use it in
-  city:string;
-  state:string;
+  street: string,          // import it into this file or other files that you want to use it in
+  city: string,
+  state: string,
+}
+
+interface Post{
+  id: number,
+  title: string,
+  body: string,
+  userId: number
 }
