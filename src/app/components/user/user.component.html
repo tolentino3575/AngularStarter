@@ -11,6 +11,34 @@
   function is written in component
 -->
 
+<h1>Edit User</h1>
+<form>
+  <div>
+    <label for="name">Name: </label><br>
+    <input type="text" [(ngModel)]="name" name="name">
+  </div>
+  <div>
+    <label for="age">Age: </label><br>
+    <input type="number" [(ngModel)]="age" name="age">
+  </div>
+  <div>
+    <label for="email">Email: </label><br>
+    <input type="text" [(ngModel)]="email" name="email">
+  </div>
+  <div>
+    <label for="street">Street: </label><br>
+    <input type="text" [(ngModel)]="address.street" name="street">
+  </div>
+  <div>
+    <label for="city">City: </label><br>
+    <input type="text" [(ngModel)]="address.city" name="city">
+  </div>
+  <div>
+    <label for="state">State: </label><br>
+    <input type="text" [(ngModel)]="address.state" name="state">
+  </div>
+</form>
+
 <h1>Hobbies</h1>
 <form (submit)="addHobby(hobby.value)">
   <div>
@@ -23,8 +51,9 @@
     to take value from input, need to give id #hobby
     addHobby(hobby.value) hobby.value coming from input
   -->
+
 <ul>
-  <li *ngFor="let hobby of hobbies; let i = index">{{i + 1}}: {{hobby}}</li>
+  <li *ngFor="let hobby of hobbies; let i = index">{{i + 1}}: {{hobby}}
   <!-- 
     hobbies refers to hobbies property in component file
     set each item in hobbies as hobby
@@ -32,5 +61,11 @@
     pass in index with let i = index
     call out each with i, can do arithmetic in there i + 1
   -->
+  <button (click)="deleteHobby(hobby)">Delete</button>
+  <!--
+    event () is a click event set to function deleteHobby()
+    pass in hobby which is whatever iteration the loop is on
+  -->
+  </li>
 </ul>
 

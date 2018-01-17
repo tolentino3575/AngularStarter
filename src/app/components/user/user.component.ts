@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
     console.log('ngOnInit ran...');
 
     this.name = 'Erik Tizzle Manizzle';
+    this.email = 'email@gmail.com';
     this.age = 27;
     this.address ={         // this corresponds to property delcared above
       street: '100 main',   // will give error if not all object properties are there
@@ -35,8 +36,17 @@ export class UserComponent implements OnInit {
   }
 
   addHobby(hobby){
-    this.hobbies.unshift(hobby);
-    return false;
+    this.hobbies.unshift(hobby); // hobby comes from the input form on html
+    return false;                 
+  }
+
+  deleteHobby(hobby){           // passed in hobby just like in html
+    console.log(hobby);
+    for(let i = 0; i < this.hobbies.length; i++){   // loop through as long as i is less than the length of hobbies
+      if(this.hobbies[i] == hobby){   // match, make sure what we are deleting is current iteration
+        this.hobbies.splice(i, 1);    // takes in i as the index and deletes just 1
+      }
+    }
   }
 }
 
